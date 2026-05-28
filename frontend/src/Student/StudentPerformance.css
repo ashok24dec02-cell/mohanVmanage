@@ -1,0 +1,194 @@
+/* StudentPerformance.css - Premium Analytics SaaS Redesign */
+
+.perf-container {
+    width: 100%;
+    min-height: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+}
+
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.perf-back-btn {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #64748b;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.perf-back-btn:hover {
+    color: #0f172a;
+    transform: translateX(-2px);
+}
+
+:global(.dark) .perf-back-btn:hover {
+    color: #ffffff;
+}
+
+/* Header Sections */
+.perf-header {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    padding-bottom: 1.5rem;
+}
+
+:global(.dark) .perf-header {
+    border-bottom-color: rgba(30, 41, 59, 0.6);
+}
+
+.perf-title {
+    font-size: 2rem;
+    font-weight: 850;
+    color: #0f172a;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #0f172a 30%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+:global(.dark) .perf-title {
+    background: linear-gradient(135deg, #ffffff 40%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.perf-subtitle {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-top: 0.35rem;
+    font-weight: 500;
+}
+
+/* Three Grid Columns layout */
+.perf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Left score dominant card with soft gradient */
+.perf-card-score {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.perf-card-score:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -8px rgba(37, 99, 235, 0.35);
+}
+
+/* Secondary KPI White Cards */
+.perf-card-white {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+:global(.dark) .perf-card-white {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.perf-card-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -8px rgba(59, 130, 246, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.02);
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+:global(.dark) .perf-card-white:hover {
+    border-color: rgba(96, 165, 250, 0.3);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.perf-icon-box {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.perf-meta-label {
+    letter-spacing: 0.05em;
+}
+
+.perf-meta-value {
+    line-height: 1;
+}
+
+.perf-card-desc {
+    border-top: 1px dashed rgba(226, 232, 240, 0.8);
+}
+
+:global(.dark) .perf-card-desc {
+    border-top-color: rgba(30, 41, 59, 0.6);
+}
+
+/* Progress Section with charts */
+.perf-progress-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+:global(.dark) .perf-progress-card {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(30, 41, 59, 0.8);
+}
+
+.perf-progress-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+:global(.dark) .perf-progress-title {
+    color: #cbd5e1;
+}
+
+/* Charts details */
+.perf-chart-container {
+    border-bottom: 2px solid rgba(226, 232, 240, 0.4);
+}
+
+:global(.dark) .perf-chart-container {
+    border-bottom-color: rgba(30, 41, 59, 0.4);
+}
+
+.perf-chart-bar {
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.perf-chart-label {
+    letter-spacing: 0.05em;
+}

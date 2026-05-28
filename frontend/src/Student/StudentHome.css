@@ -1,0 +1,750 @@
+/* ═══════════════════════════════════════════════════════════════
+   StudentHome.css — Clean Semantic Stylesheet
+   Tailored to premium, responsive dashboard visuals
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. Root & Base Entrance animations ────────────────────── */
+@keyframes dashboardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes meshFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(8px, -12px) scale(1.05);
+    }
+}
+
+.dashboard-container {
+    animation: dashboardEntrance 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── 2. Welcome Banner Mesh Gradient ───────────────────────── */
+.welcome-banner {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 45%, #7c3aed 100%);
+    border-radius: 1.75rem;
+    padding: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(79, 70, 229, 0.25);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.welcome-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 55px rgba(79, 70, 229, 0.35);
+}
+
+.welcome-banner-circle-1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16rem;
+    height: 16rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    filter: blur(48px);
+    margin-right: -8rem;
+    margin-top: -8rem;
+    transition: transform 0.7s;
+    animation: meshFloat 8s ease-in-out infinite;
+}
+
+.welcome-banner:hover .welcome-banner-circle-1 {
+    transform: scale(1.1);
+}
+
+.welcome-banner-circle-2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 16rem;
+    height: 16rem;
+    background: rgba(129, 140, 248, 0.2);
+    border-radius: 9999px;
+    filter: blur(48px);
+    margin-left: -8rem;
+    margin-mb: -8rem;
+    transition: transform 0.7s;
+    animation: meshFloat 10s ease-in-out infinite alternate;
+}
+
+.welcome-banner:hover .welcome-banner-circle-2 {
+    transform: scale(1.1);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 10;
+}
+
+.welcome-badge {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.welcome-title {
+    font-size: 1.875rem;
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.05em;
+    line-height: 1.2;
+}
+
+.welcome-name {
+    background: linear-gradient(to right, #ffffff, #bfdbfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcome-desc {
+    color: rgba(219, 234, 254, 0.8);
+    font-size: 0.875rem;
+    font-weight: 500;
+    max-width: 28rem;
+    line-height: 1.625;
+}
+
+.welcome-icon-decor {
+    position: absolute;
+    right: 3rem;
+    bottom: 0;
+    opacity: 0.1;
+    transform: translateY(25%);
+}
+
+/* Responsive Welcome Card */
+@media (min-width: 640px) {
+    .welcome-banner {
+        border-radius: 2.5rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    .welcome-badge {
+        margin-bottom: 1.5rem;
+    }
+    .welcome-title {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+    }
+    .welcome-desc {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .welcome-banner {
+        padding: 3rem;
+    }
+    .welcome-title {
+        font-size: 3rem;
+    }
+    .welcome-desc {
+        font-size: 1.125rem;
+    }
+}
+
+/* ── 3. High-End Stats Cards ───────────────────────────────── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+.stat-card-custom {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dark .stat-card-custom {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+.stat-card-custom:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.06);
+    border-color: rgba(37, 99, 235, 0.35);
+}
+
+.dark .stat-card-custom:hover {
+    background: #1e293b;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.stat-icon-wrap {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.stat-card-custom:hover .stat-icon-wrap {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Stat Icon Colors */
+.stat-icon-wrap.blue { background: #eff6ff; color: #2563eb; }
+.stat-icon-wrap.indigo { background: #eef2ff; color: #4f46e5; }
+.stat-icon-wrap.emerald { background: #ecfdf5; color: #10b981; }
+.stat-icon-wrap.orange { background: #fff7ed; color: #ea580c; }
+.stat-icon-wrap.violet { background: #f5f3ff; color: #7c3aed; }
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.625rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #0f172a;
+}
+
+.dark .stat-value {
+    color: #ffffff;
+}
+
+/* Responsive Stats */
+@media (min-width: 640px) {
+    .stat-card-custom {
+        border-radius: 1.75rem;
+        padding: 1.5rem;
+    }
+    .stat-icon-wrap {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    .stat-value {
+        font-size: 1.875rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .stat-card-custom {
+        border-radius: 2rem;
+        padding: 2rem;
+    }
+}
+
+/* ── 4. Main Section Panels ────────────────────────────────── */
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .sections-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+.panel-card-custom {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .panel-card-custom {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(30, 41, 59, 0.7);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.panel-card-custom:hover {
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+    border-color: rgba(226, 232, 240, 0.9);
+}
+
+.dark .panel-card-custom:hover {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    border-color: rgba(30, 41, 59, 0.9);
+}
+
+.panel-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark .panel-header {
+    border-bottom-color: rgba(30, 41, 59, 0.5);
+}
+
+.panel-title {
+    font-size: 1.125rem;
+    font-weight: 900;
+    color: #1e293b;
+    letter-spacing: -0.025em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.dark .panel-title {
+    color: #ffffff;
+}
+
+.panel-title-accent {
+    width: 0.375rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+}
+
+.panel-title-accent.blue { background-color: #2563eb; }
+.panel-title-accent.emerald { background-color: #10b981; }
+.panel-title-accent.violet { background-color: #7c3aed; }
+
+.panel-action-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.panel-action-btn.blue { color: #2563eb; }
+.panel-action-btn.emerald { color: #10b981; }
+.panel-action-btn.violet { color: #7c3aed; }
+
+.panel-action-btn:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.panel-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+/* Responsive Panel */
+@media (min-width: 640px) {
+    .panel-card-custom {
+        border-radius: 2.5rem;
+    }
+    .panel-header {
+        padding: 1.5rem;
+    }
+    .panel-body {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .panel-header {
+        padding: 2rem;
+    }
+    .panel-body {
+        padding: 2rem;
+    }
+}
+
+/* ── 5. Responsive List Elements & Hover Accents ──────────── */
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+    .schedule-item {
+        gap: 1.5rem;
+        padding: 1rem;
+        border-radius: 1.5rem;
+    }
+}
+
+.schedule-item:hover {
+    background: #f8fafc;
+    transform: translateX(4px);
+    border-color: rgba(37, 99, 235, 0.1);
+}
+
+.dark .schedule-item:hover {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(96, 165, 250, 0.1);
+}
+
+.schedule-time-block {
+    text-align: center;
+    min-width: 3.75rem;
+}
+
+@media (min-width: 640px) {
+    .schedule-time-block {
+        min-width: 4.375rem;
+    }
+}
+
+.schedule-time {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #0f172a;
+}
+
+.dark .schedule-time {
+    color: #ffffff;
+}
+
+@media (min-width: 640px) {
+    .schedule-time {
+        font-size: 0.875rem;
+    }
+}
+
+.schedule-ampm {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+    .schedule-ampm {
+        font-size: 0.625rem;
+    }
+}
+
+.schedule-details {
+    flex: 1;
+}
+
+.schedule-subject {
+    font-weight: 900;
+    color: #1e293b;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    transition: color 0.2s ease;
+}
+
+.dark .schedule-subject {
+    color: #e2e8f0;
+}
+
+@media (min-width: 640px) {
+    .schedule-subject {
+        font-size: 1rem;
+    }
+}
+
+.schedule-item:hover .schedule-subject {
+    color: #2563eb;
+}
+
+.schedule-teacher {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 0.125rem;
+}
+
+@media (min-width: 640px) {
+    .schedule-teacher {
+        font-size: 0.75rem;
+    }
+}
+
+/* Homework styling */
+.homework-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background: rgba(248, 250, 252, 0.5);
+    border-left: 3px solid transparent;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .homework-item {
+    background: rgba(30, 41, 59, 0.25);
+}
+
+@media (min-width: 640px) {
+    .homework-item {
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 1.5rem;
+    }
+}
+
+.homework-item:hover {
+    background: rgba(244, 252, 249, 0.8);
+    border-left-color: #10b981;
+    transform: translateX(4px);
+}
+
+.dark .homework-item:hover {
+    background: rgba(16, 185, 129, 0.08);
+    border-left-color: #34d399;
+}
+
+.homework-info {
+    flex: 1;
+}
+
+.homework-task {
+    font-weight: 900;
+    color: #1e293b;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    transition: color 0.2s ease;
+}
+
+.dark .homework-task {
+    color: #e2e8f0;
+}
+
+@media (min-width: 640px) {
+    .homework-task {
+        font-size: 1rem;
+    }
+}
+
+.homework-item:hover .homework-task {
+    color: #10b981;
+}
+
+.homework-subject {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.125rem;
+}
+
+@media (min-width: 640px) {
+    .homework-subject {
+        font-size: 0.75rem;
+    }
+}
+
+.homework-deadline-badge {
+    font-size: 0.5625rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.375rem 0.5rem;
+    border-radius: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .homework-deadline-badge {
+        font-size: 0.625rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+.homework-deadline-badge.submitted {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.homework-deadline-badge.pending {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+/* ── 6. Progress Bar Animation ─────────────────────────────── */
+.recent-marks-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.25s ease;
+}
+
+.recent-marks-item:hover {
+    transform: translateY(-2px);
+}
+
+.recent-marks-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recent-marks-subject {
+    font-weight: 900;
+    color: #1e293b;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.dark .recent-marks-subject {
+    color: #e2e8f0;
+}
+
+@media (min-width: 640px) {
+    .recent-marks-subject {
+        font-size: 0.875rem;
+    }
+}
+
+.recent-marks-item:hover .recent-marks-subject {
+    color: #7c3aed;
+}
+
+.recent-marks-score {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #0f172a;
+}
+
+.dark .recent-marks-score {
+    color: #ffffff;
+}
+
+@media (min-width: 640px) {
+    .recent-marks-score {
+        font-size: 0.875rem;
+    }
+}
+
+.progress-bar-track {
+    height: 0.5rem;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.dark .progress-bar-track {
+    background: #1e293b;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #8b5cf6, #6366f1);
+    width: var(--progress-width, 0%);
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── 7. Report Card Button ────────────────────────────────── */
+.report-card-btn {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #f5f3ff;
+    color: #7c3aed;
+    border-radius: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.5625rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark .report-card-btn {
+    background: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+}
+
+@media (min-width: 640px) {
+    .report-card-btn {
+        padding: 1.25rem;
+        border-radius: 1.25rem;
+        font-size: 0.625rem;
+    }
+}
+
+.report-card-btn:hover {
+    background: #ede9fe;
+}
+
+.dark .report-card-btn:hover {
+    background: rgba(124, 58, 237, 0.25);
+}
+
+.report-card-btn-icon {
+    transition: transform 0.2s ease;
+}
+
+.report-card-btn:hover .report-card-btn-icon {
+    transform: translateX(4px);
+}

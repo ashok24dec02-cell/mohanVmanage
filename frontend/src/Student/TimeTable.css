@@ -1,0 +1,563 @@
+/* TimeTable.css - Modern SaaS/Linear UI Design System */
+
+.timetable-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Custom Scrollbar for Weekly Table */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 9999px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Base Type Badge Colors */
+.bg-type-break { background-color: #fef3c7; color: #92400e; border-color: #fde68a; }
+.bg-type-practical { background-color: #d1fae5; color: #065f46; border-color: #a7f3d0; }
+.bg-type-activity { background-color: #f3e8ff; color: #5b21b6; border-color: #ddd6fe; }
+.bg-type-exam { background-color: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.bg-type-lecture { background-color: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+.bg-type-default { background-color: #f1f5f9; color: #334155; border-color: #e2e8f0; }
+
+/* Dark Mode Support */
+.dark .bg-type-break { background-color: rgba(253, 230, 138, 0.1); color: #fbbf24; border-color: rgba(253, 230, 138, 0.2); }
+.dark .bg-type-practical { background-color: rgba(167, 243, 208, 0.1); color: #34d399; border-color: rgba(167, 243, 208, 0.2); }
+.dark .bg-type-activity { background-color: rgba(221, 214, 254, 0.1); color: #a78bfa; border-color: rgba(221, 214, 254, 0.2); }
+.dark .bg-type-exam { background-color: rgba(254, 202, 202, 0.1); color: #f87171; border-color: rgba(254, 202, 202, 0.2); }
+.dark .bg-type-lecture { background-color: rgba(191, 219, 254, 0.1); color: #60a5fa; border-color: rgba(191, 219, 254, 0.2); }
+.dark .bg-type-default { background-color: rgba(226, 232, 240, 0.1); color: #94a3b8; border-color: rgba(226, 232, 240, 0.2); }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ==========================================================================
+   TIMETABLE HEADER & SEGMENTED TABS STYLING
+   ========================================================================== */
+
+.timetable-header-container {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    padding: 1.75rem 2rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .timetable-header-container {
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.timetable-header-container h2 {
+    font-size: 1.625rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.03em !important;
+}
+.dark .timetable-header-container h2 {
+    color: #ffffff !important;
+}
+
+.timetable-header-container p {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #64748b !important;
+    margin-top: 0.35rem !important;
+    line-height: 1.5 !important;
+}
+.dark .timetable-header-container p {
+    color: #94a3b8 !important;
+}
+
+/* Segmented Control Pill Container */
+.tab-segmented-control {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 9999px !important;
+    padding: 3px !important;
+}
+.dark .tab-segmented-control {
+    background: #0f172a !important;
+    border: 1px solid #1e293b !important;
+}
+
+/* Individual Tab Segment Button */
+.tab-btn {
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+    font-size: 0.825rem !important;
+    letter-spacing: -0.01em;
+    padding: 0.5rem 1.25rem !important;
+    color: #64748b !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.dark .tab-btn {
+    color: #94a3b8 !important;
+}
+
+/* Active Segment Tab State */
+.tab-btn.active {
+    background: #ffffff !important;
+    color: #2563eb !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+.dark .tab-btn.active {
+    background: #1e293b !important;
+    color: #38bdf8 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+.tab-btn:hover:not(.active) {
+    color: #0f172a !important;
+}
+.dark .tab-btn:hover:not(.active) {
+    color: #f8fafc !important;
+}
+
+
+/* ==========================================================================
+   DATE NAVIGATOR STYLING
+   ========================================================================== */
+
+.date-nav-container {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.25s ease;
+}
+.dark .date-nav-container {
+    background: rgba(30, 41, 59, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+.date-nav-btn {
+    border-radius: 12px !important;
+    padding: 0.5rem !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.date-nav-btn:hover {
+    background: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+}
+.dark .date-nav-btn:hover {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+.date-nav-title {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.02em;
+}
+.dark .date-nav-title {
+    color: #ffffff !important;
+}
+.date-nav-subtitle {
+    font-size: 0.6875rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    color: #2563eb !important;
+}
+.dark .date-nav-subtitle {
+    color: #38bdf8 !important;
+}
+
+
+/* ==========================================================================
+   HERO EXAM HIGHLIGHT CARD
+   ========================================================================== */
+
+.hero-exam-card {
+    background: linear-gradient(135deg, #090d16 0%, #111827 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+    padding: 1.75rem 2rem !important;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4), 0 0 40px -5px rgba(59, 130, 246, 0.2) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.hero-exam-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(59, 130, 246, 0) 100%);
+}
+.hero-exam-card.completed {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    opacity: 0.85;
+}
+.hero-exam-card.completed::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+}
+.hero-exam-card h3 {
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+
+/* ==========================================================================
+   TODAY VIEW TIMELINE STYLING
+   ========================================================================== */
+
+.today-timeline-container {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    padding: 2.25rem 2rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .today-timeline-container {
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.today-timeline-wrapper {
+    padding-left: 3rem !important;
+}
+
+.today-timeline-line {
+    background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 50%, rgba(203, 213, 225, 0) 100%) !important;
+    width: 2px !important;
+    left: 15px !important;
+}
+.dark .today-timeline-line {
+    background: linear-gradient(180deg, #1e293b 0%, #334155 50%, rgba(51, 65, 85, 0) 100%) !important;
+}
+
+.today-timeline-item {
+    margin-bottom: 2rem !important;
+}
+.today-timeline-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+.today-timeline-dot {
+    width: 12px !important;
+    height: 12px !important;
+    left: -32px !important;
+    background: #cbd5e1 !important;
+    border: 2.5px solid #ffffff !important;
+    box-shadow: 0 0 0 1px #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .today-timeline-dot {
+    background: #334155 !important;
+    border-color: #0f172a !important;
+    box-shadow: 0 0 0 1px #1e293b;
+}
+
+.today-timeline-dot.active {
+    background: #2563eb !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2), 0 0 12px rgba(37, 99, 235, 0.4) !important;
+    transform: scale(1.25);
+}
+.dark .today-timeline-dot.active {
+    background: #38bdf8 !important;
+    border-color: #0f172a !important;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25), 0 0 12px rgba(56, 189, 248, 0.4) !important;
+    transform: scale(1.25);
+}
+
+.today-schedule-card {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(226, 232, 240, 0.7) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    border-radius: 16px !important;
+    padding: 1.25rem 1.5rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .today-schedule-card {
+    background: rgba(30, 41, 59, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+.today-schedule-card.cursor-pointer:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(37, 99, 235, 0.3) !important;
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.06) !important;
+}
+.dark .today-schedule-card.cursor-pointer:hover {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-color: rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.today-schedule-card.active-class {
+    background: rgba(37, 99, 235, 0.03) !important;
+    border-color: rgba(37, 99, 235, 0.4) !important;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    transform: scale(1.02);
+}
+.dark .today-schedule-card.active-class {
+    background: rgba(56, 189, 248, 0.03) !important;
+    border-color: rgba(56, 189, 248, 0.3) !important;
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+.today-schedule-card h4 {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #0f172a;
+}
+.dark .today-schedule-card h4 {
+    color: #f8fafc;
+}
+.today-schedule-card .text-sm.font-bold {
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    color: #334155;
+}
+.dark .today-schedule-card .text-sm.font-bold {
+    color: #cbd5e1;
+}
+
+
+/* ==========================================================================
+   WEEKLY VIEW SPACING & ALIGNMENT UPGRADES
+   ========================================================================== */
+
+.timetable-container table th {
+    padding: 1.25rem 1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em;
+}
+
+.timetable-container table tbody td {
+    padding: 0.75rem !important;
+    vertical-align: middle;
+}
+
+.timetable-container table th.sticky,
+.timetable-container table td.sticky {
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.02) !important;
+    border-right: 1px solid #e2e8f0 !important;
+}
+.dark .timetable-container table th.sticky,
+.dark .timetable-container table td.sticky {
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2) !important;
+    border-right: 1px solid #1e293b !important;
+}
+
+
+/* ==========================================================================
+   EXAMS VIEW STYLING (Spaced category tabs & Glass shadow card grid)
+   ========================================================================== */
+
+/* Spacing out category tabs wrapper */
+.exam-filter-tabs-container {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 9999px !important;
+    padding: 4px !important;
+    width: fit-content;
+    margin: 0 auto 2.5rem auto !important; /* Center-aligned capsule tab */
+    gap: 0px !important; /* Seamless segment spacing */
+}
+.dark .exam-filter-tabs-container {
+    background: #0f172a !important;
+    border: 1px solid #1e293b !important;
+}
+
+/* Category individual buttons */
+.exam-filter-btn {
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+    font-size: 0.825rem !important;
+    letter-spacing: -0.01em;
+    padding: 0.5rem 1.25rem !important;
+    color: #64748b !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.dark .exam-filter-btn {
+    color: #94a3b8 !important;
+}
+
+/* Category active selector */
+.exam-filter-btn.active {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+.dark .exam-filter-btn.active {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+.exam-filter-btn:hover:not(.active) {
+    color: #0f172a !important;
+}
+.dark .exam-filter-btn:hover:not(.active) {
+    color: #f8fafc !important;
+}
+
+/* Card Grid Spacing and Alignment */
+.exams-grid-container {
+    gap: 1.75rem !important;
+}
+
+/* Modern clean card grid items */
+.exam-card-custom {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 20px !important;
+    padding: 1.75rem !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px; /* Equalized column heights */
+}
+.dark .exam-card-custom {
+    background: rgba(30, 41, 59, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Elevate lift on hover with clean border lighting */
+.exam-card-custom:hover {
+    transform: translateY(-4px) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(37, 99, 235, 0.3) !important;
+    box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.12) !important;
+}
+.dark .exam-card-custom:hover {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-color: rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Typography Hierarchy upgrades inside exam cards */
+.exam-card-custom h4 {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 1.25rem !important;
+}
+.dark .exam-card-custom h4 {
+    color: #ffffff !important;
+}
+
+/* ─────────────────────────────────────────────
+   Premium Supervisor Schedule Styling
+   ───────────────────────────────────────────── */
+.supervisor-section {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.dark .supervisor-section {
+    border-top-color: #334155;
+}
+
+.supervisor-section h5 {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.dark .supervisor-section h5 {
+    color: #94a3b8;
+}
+
+.supervisor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.supervisor-slot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+}
+
+.dark .supervisor-slot {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(255, 255, 255, 0.02);
+}
+
+.supervisor-slot .sup-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    white-space: nowrap;
+}
+
+.dark .supervisor-slot .sup-time {
+    color: #60a5fa;
+}
+
+.supervisor-slot .sup-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #334155;
+    text-align: right;
+}
+
+.dark .supervisor-slot .sup-name {
+    color: #cbd5e1;
+}
