@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --primary: #8B5CF6; /* Purple */
-    --primary-glow: rgba(139, 92, 246, 0.3);
+    --primary: #6366f1;
+    /* Indigo */
+    --primary-glow: rgba(99, 102, 241, 0.5);
     --secondary: #06b6d4;
+    /* Cyan */
     --accent: #f59e0b;
-    --bg-dark: #F8FAFC; /* Main background light */
-    --card-bg: #FFFFFF;
-    --sidebar-bg: #1E293B;
-    --text-white: #0F172A; /* Text main dark */
-    --text-dim: #64748B;
-    --glass-border: #E2E8F0;
+    /* Amber */
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --sidebar-bg: #1e293b;
+    --text-white: #f8fafc;
+    --text-dim: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -29,26 +32,17 @@ body {
 .admin-dashboard {
     display: flex;
     min-height: 100vh;
-    background: var(--bg-dark);
+    background: radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 30%);
 }
 
 /* Sidebar styles moved to Sidebar.css */
 
 /* Main Content area */
-.admin-main-wrapper {
-    flex: 1;
-    margin-left: 240px;
-    display: flex;
-    justify-content: center;
-    width: calc(100% - 240px);
-}
-
 .admin-main {
-    width: 100%;
-    max-width: 1600px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem 3rem;
 }
 
 .admin-header {
@@ -75,7 +69,7 @@ body {
 }
 
 .search-box {
-    background: #FFFFFF;
+    background: var(--sidebar-bg);
     border: 1px solid var(--glass-border);
     padding: 0.75rem 1.25rem;
     border-radius: 1rem;
@@ -88,7 +82,7 @@ body {
 .search-box input {
     background: transparent;
     border: none;
-    color: var(--text-white);
+    color: white;
     outline: none;
     width: 100%;
 }
@@ -97,7 +91,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: #FFFFFF;
+    background: var(--sidebar-bg);
     padding: 0.5rem 1rem 0.5rem 0.5rem;
     border-radius: 3rem;
     border: 1px solid var(--glass-border);
@@ -138,13 +132,20 @@ body {
 }
 
 .stat-glass-card::after {
-    content: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    pointer-events: none;
 }
 
 .stat-glass-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
 .stat-icon {
@@ -193,14 +194,13 @@ body {
 }
 
 .hero-card {
-    background: linear-gradient(135deg, #F1F5F9 0%, #FFFFFF 100%);
-    border: 1px solid var(--glass-border);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.3);
     border-radius: 2.5rem;
     padding: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
 
 .hero-card h2 {
@@ -221,9 +221,9 @@ body {
     width: fit-content;
     padding: 1.25rem 2.5rem;
     border-radius: 1.25rem;
-    background: var(--primary);
-    color: white;
-    font-weight: 700;
+    background: white;
+    color: var(--bg-dark);
+    font-weight: 800;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -248,8 +248,7 @@ body {
         /* Add mobile toggle later */
     }
 
-    .admin-main-wrapper {
+    .admin-main {
         margin-left: 0;
-        width: 100%;
     }
 }

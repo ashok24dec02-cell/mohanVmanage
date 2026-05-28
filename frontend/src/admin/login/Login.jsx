@@ -27,8 +27,8 @@ const Login = () => {
 
             if (data.success) {
                 // Save admin info for the dashboard
-                sessionStorage.setItem('admin_id', data.admin_id);
-                sessionStorage.setItem('admin_name', data.name);
+                localStorage.setItem('admin_id', data.admin_id);
+                localStorage.setItem('admin_name', data.name);
                 localStorage.setItem('username', data.username);
                 
                 // Redirect to the correct admin dashboard path

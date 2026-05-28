@@ -27,12 +27,3 @@ timetable_classes = db["timetable_classes"]
 timetable_subjects = db["timetable_subjects"]
 timetable_settings = db["timetable_settings"]
 timetables_collection = db["timetables"]
-
-# Student Portal Collections
-timetable_collection = db["timetables"]
-exam_timetable_collection = db["ExamTimeTable"]
-homework_collection = db["Homework"]
-exam_marks_collection = db["ExamMarks"]
-performance_collection = db["Performance"]
-drug_detection_collection = db["DrugDetection"]
-

@@ -7,8 +7,8 @@ const AdminLayout = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const adminId = sessionStorage.getItem('admin_id');
-        const name = sessionStorage.getItem('admin_name');
+        const adminId = localStorage.getItem('admin_id');
+        const name = localStorage.getItem('admin_name');
 
         if (!adminId || !name) {
             navigate('/admin/login');
@@ -18,11 +18,9 @@ const AdminLayout = () => {
     return (
         <div className="admin-dashboard">
             <Sidebar />
-            <div className="admin-main-wrapper">
-                <main className="admin-main">
-                    <Outlet />
-                </main>
-            </div>
+            <main className="admin-main">
+                <Outlet />
+            </main>
         </div>
     );
 };

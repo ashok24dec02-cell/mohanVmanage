@@ -103,10 +103,9 @@ try:
 except:
     connect(db="Vmanage_V-1", host=MONGO_URI)
 
-# MONGO_URI = "mongodb://localhost:27017/Vmanage_V-1"
 # connect(
-# db="Vmanage_V-1",
-# host="mongodb://localhost:27017/Vmanage_V-1"
+#     db="Vmanage_V-1",
+#     host="mongodb://localhost:27017/Vmanage_V-1"
 # )
 
 # Password validation

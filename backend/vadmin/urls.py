@@ -1,11 +1,8 @@
 from django.urls import path
 from .views import *
 from .staff_views import *
-from .class_views import ClassListView as CoreClassListView, ClassDetailView as CoreClassDetailView
 from .class_views import *
-from .timetable_api_views import ClassListCreateView as TTClassListCreateView, ClassDetailView as TTClassDetailView
 from .timetable_api_views import *
-from .exam_timetable_views import *
 
 urlpatterns = [
     path('admission/', AdmissionView.as_view(), name='admission'),
@@ -17,8 +14,8 @@ urlpatterns = [
     path('attendance/', StaffAttendanceView.as_view(), name='staff-attendance'),
 
     # Class Management
-    path('classes/', CoreClassListView.as_view(), name='class-list'),
-    path('classes/<str:pk>/', CoreClassDetailView.as_view(), name='class-detail'),
+    path('classes/', ClassListView.as_view(), name='class-list'),
+    path('classes/<str:pk>/', ClassDetailView.as_view(), name='class-detail'),
 
     # Timetable Engine
     path('timetable/', GetTimetableView.as_view(), name='get-timetable'),
@@ -30,11 +27,6 @@ urlpatterns = [
     path('teachers/<str:pk>/', TeacherDetailView.as_view(), name='teacher-detail'),
     path('subjects/', SubjectListCreateView.as_view(), name='subject-list'),
     path('subjects/<str:pk>/', SubjectDetailView.as_view(), name='subject-detail'),
-    path('tt-classes/', TTClassListCreateView.as_view(), name='tt-class-list'),
-    path('tt-classes/<str:pk>/', TTClassDetailView.as_view(), name='tt-class-detail'),
-    
-    # Exam Timetable Management
-    path('exam-timetable/', AdminExamTimetableView.as_view(), name='admin-exam-timetable'),
-    path('exam-timetable/<str:pk>/', AdminExamTimetableDetailView.as_view(), name='admin-exam-timetable-detail'),
-    path('free-teachers/', FreeTeachersView.as_view(), name='free-teachers'),
+    path('tt-classes/', ClassListCreateView.as_view(), name='tt-class-list'),
+    path('tt-classes/<str:pk>/', ClassDetailView.as_view(), name='tt-class-detail'),
 ]

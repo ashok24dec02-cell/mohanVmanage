@@ -68,27 +68,4 @@ export const timetableAPI = {
   generate: (data) => apiClient.post('vadmin/timetable/generate/', data)
 };
 
-// ==========================================
-// Exam Timetable APIs
-// ==========================================
-export const examAPI = {
-  getAll: (grade) => apiClient.get('vadmin/exam-timetable/', { params: { grade } }),
-  create: (data) => apiClient.post('vadmin/exam-timetable/', data),
-  update: (id, data) => apiClient.put(`vadmin/exam-timetable/${id}/`, data),
-  delete: (id) => apiClient.delete(`vadmin/exam-timetable/${id}/`),
-  getFreeTeachers: (exam_date, start_time, end_time) => 
-    apiClient.get('vadmin/free-teachers/', { params: { exam_date, start_time, end_time } }),
-};
-
-// ==========================================
-// Master ERP APIs (Staff & Classes)
-// ==========================================
-export const masterStaffAPI = {
-  getAll: () => apiClient.get('vadmin/staff/'),
-};
-
-export const masterClassAPI = {
-  getAll: () => apiClient.get('vadmin/classes/'),
-};
-
 export default apiClient;

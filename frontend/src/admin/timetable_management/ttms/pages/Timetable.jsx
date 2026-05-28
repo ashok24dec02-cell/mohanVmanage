@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { Calendar, RefreshCw, CheckCircle, Clock, Filter, Users, Layers, AlertCircle, Download, Settings as SettingsIcon, Save, Bell, User } from 'lucide-react';
-import { timetableAPI, settingsAPI, examAPI } from '../services/api';
+import { Calendar, RefreshCw, CheckCircle, Clock, Filter, Users, Layers, AlertCircle, Download, Settings as SettingsIcon, Save } from 'lucide-react';
+import { timetableAPI, settingsAPI } from '../services/api';
 import TimetableGrid from '../components/TimetableGrid';
 import ClashAlerts from '../components/ClashAlerts';
 import DataManagement from '../components/DataManagement';
-import ExamManagement from '../components/ExamManagement';
 import { useReactToPrint } from 'react-to-print';
 import './Timetable.css';
 
@@ -18,9 +17,6 @@ const Timetable = () => {
     const [clashErrors, setClashErrors] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
     const [showDataManager, setShowDataManager] = useState(false);
-    const [showExamManager, setShowExamManager] = useState(false);
-    const [examData, setExamData] = useState([]);
-    const [currentWeekDate, setCurrentWeekDate] = useState(new Date());
 
     // AI Generation Rules
     const [minFreePeriods, setMinFreePeriods] = useState(1);
@@ -54,10 +50,9 @@ const Timetable = () => {
     const fetchInitialData = async () => {
         setLoading(true);
         try {
-            const [ttRes, settingsRes, examsRes] = await Promise.all([
+            const [ttRes, settingsRes] = await Promise.all([
                 timetableAPI.getAll(),
-                settingsAPI.get(),
-                examAPI.getAll()
+                settingsAPI.get()
             ]);
             
             const fetchedTT = ttRes.data.timetables || [];
@@ -69,43 +64,12 @@ const Timetable = () => {
             if (settingsRes.data && settingsRes.data.school_name) {
                 setSchoolSettings(settingsRes.data);
             }
-
-            setExamData(examsRes.data || []);
         } catch (err) {
             setError('Failed to load system data. Please check connection.');
         } finally {
             setLoading(false);
         }
     };
-
-    const fetchExams = async () => {
-        try {
-            const examsRes = await examAPI.getAll();
-            setExamData(examsRes.data || []);
-        } catch (err) {
-            console.error('Failed to load exams', err);
-        }
-    };
-
-    const getWeekDates = (baseDate) => {
-        const startOfWeek = new Date(baseDate);
-        const day = startOfWeek.getDay();
-        const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
-        startOfWeek.setDate(diff);
-        
-        const daysName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-        return daysName.map((dayName, index) => {
-            const date = new Date(startOfWeek);
-            date.setDate(startOfWeek.getDate() + index);
-            return {
-                name: dayName,
-                dateStr: date.toLocaleDateString('en-CA'),
-                display: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-            };
-        });
-    };
-
-    const weekDates = getWeekDates(currentWeekDate);
 
     const handleSaveSettings = async () => {
         setSavingSettings(true);
@@ -199,24 +163,14 @@ const Timetable = () => {
 
     return (
         <div className="tt-container">
-            {/* Top Admin Header */}
-            <div className="tt-admin-header">
-                <div className="tt-admin-header-left">
-                    <h1>Timetable Management</h1>
-                    <p>Generate and manage school schedules</p>
+            {/* Header & Controls */}
+            <div className="tt-header-section">
+                <div className="tt-title-group">
+                    <h1>Timetable Engine</h1>
+                    <p>Generate and view automated schedules</p>
                 </div>
-                <div className="tt-admin-header-right">
-                    <button className="tt-icon-btn"><Bell size={20} /></button>
-                    <button className="tt-icon-btn" onClick={() => setShowSettings(!showSettings)}><SettingsIcon size={20} /></button>
-                    <div className="tt-profile-badge">
-                        <div className="tt-avatar"><User size={18} color="#fff" /></div>
-                        <span>Admin Profile</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Controls Card */}
-            <div className="tt-controls-card">
+                
+                <div className="tt-controls-card">
                     <div className="tt-rules-panel">
                         <h3 className="tt-rules-title"><CheckCircle size={18} color="#10b981"/> AI Engine Rules</h3>
                         <div className="tt-rules-inputs">
@@ -250,13 +204,6 @@ const Timetable = () => {
                             <Users size={18} /> Manage Data
                         </button>
                         <button
-                            onClick={() => setShowExamManager(true)}
-                            className="tt-btn tt-btn-pdf"
-                            style={{borderColor: '#ef4444', color: '#ef4444', gap: '0.5rem'}}
-                        >
-                            <Calendar size={18} /> Exam Schedule
-                        </button>
-                        <button
                             onClick={handleGenerate}
                             disabled={generating}
                             className="tt-btn tt-btn-generate"
@@ -265,27 +212,26 @@ const Timetable = () => {
                             {generating ? 'Generating...' : 'Generate Timetable'}
                         </button>
                         <div className="tt-btn-row">
-                            <button onClick={handleDownloadPDF} className="tt-btn tt-btn-pdf" title="Download PDF">
-                                <Download size={18} /> Download
+                            <button onClick={handleDownloadPDF} className="tt-btn tt-btn-pdf">
+                                <Download size={18} />
+                            </button>
+                            <button 
+                                onClick={() => setShowSettings(!showSettings)} 
+                                className={`tt-btn tt-btn-pdf ${showSettings ? 'active' : ''}`}
+                                title="School Timings"
+                            >
+                                <SettingsIcon size={18} />
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
 
             {/* Data Management Modal */}
             {showDataManager && (
                 <DataManagement 
                     onClose={() => setShowDataManager(false)} 
                     onDataChange={fetchInitialData} 
-                />
-            )}
-
-            {/* Exam Management Modal */}
-            {showExamManager && (
-                <ExamManagement 
-                    onClose={() => setShowExamManager(false)} 
-                    onDataChange={fetchExams}
-                    selectedClass={selectedEntity}
                 />
             )}
 
@@ -387,38 +333,6 @@ const Timetable = () => {
                             <button onClick={() => handleViewModeChange('teacher')} className={`tt-segment-btn ${viewMode === 'teacher' ? 'active' : ''}`}><Users size={16} /> Teacher View</button>
                         </div>
 
-                        {viewMode === 'class' && (
-                            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800" style={{height: '38px', boxSizing: 'border-box'}}>
-                                <button 
-                                    onClick={() => {
-                                        const d = new Date(currentWeekDate);
-                                        d.setDate(d.getDate() - 7);
-                                        setCurrentWeekDate(d);
-                                    }}
-                                    className="p-1 hover:bg-white dark:hover:bg-slate-800 rounded-md border-none bg-transparent cursor-pointer text-slate-600 dark:text-slate-300 font-bold"
-                                    style={{fontSize: '0.85rem'}}
-                                    title="Previous Week"
-                                >
-                                    ◀
-                                </button>
-                                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 select-none">
-                                    Week: {weekDates[0].display} - {weekDates[4].display}
-                                </span>
-                                <button 
-                                    onClick={() => {
-                                        const d = new Date(currentWeekDate);
-                                        d.setDate(d.getDate() + 7);
-                                        setCurrentWeekDate(d);
-                                    }}
-                                    className="p-1 hover:bg-white dark:hover:bg-slate-800 rounded-md border-none bg-transparent cursor-pointer text-slate-600 dark:text-slate-300 font-bold"
-                                    style={{fontSize: '0.85rem'}}
-                                    title="Next Week"
-                                >
-                                    ▶
-                                </button>
-                            </div>
-                        )}
-
                         <select value={selectedEntity} onChange={(e) => setSelectedEntity(e.target.value)} className="tt-select">
                             {entityOptions.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
                         </select>
@@ -440,9 +354,10 @@ const Timetable = () => {
                 ) : (
                     <div className="tt-content-body" ref={componentRef}>
                         <div className="tt-grid-header">
-                            <div className="tt-badge-title">
-                                {viewMode === 'class' ? '📚 Class:' : '👨‍🏫 Teacher:'} <span>{selectedEntity}</span>
-                            </div>
+                            <h2>
+                                {viewMode === 'class' ? <Layers size={24} color="#8b5cf6" /> : <Users size={24} color="#8b5cf6" />}
+                                {viewMode === 'class' ? 'Class' : 'Teacher'}: {selectedEntity}
+                            </h2>
                         </div>
 
                         {currentSchedule && (
@@ -450,9 +365,6 @@ const Timetable = () => {
                                 schedule={currentSchedule}
                                 selectedDay={selectedDay}
                                 masterPeriods={masterPeriods}
-                                weekDates={weekDates}
-                                examData={examData}
-                                selectedEntity={selectedEntity}
                             />
                         )}
                     </div>
